@@ -16,6 +16,9 @@ const noteSchema = new Schema({
       ref: 'Site',
     },
   ],
+  date: {
+    type: Date,
+  },
 });
 
 const Note = model('Note', noteSchema);

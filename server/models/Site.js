@@ -14,9 +14,11 @@ const siteSchema = new Schema({
   },
   classifcation: {
     type: String,
+    enum: ['Residenal', 'Commersial', 'Industrial'],
   },
   catorgery: {
     type: String,
+    enum: ['Reno', 'Re-Build', 'Service'],
   },
 });
 

@@ -18,14 +18,24 @@ const userSchema = new Schema({
   },
   username: {
     type: String,
+    trim: true,
   },
-  Company: {
+  company: {
     type: String,
   },
   trade: {
     type: String,
+    enum: [
+      'Architect',
+      'Builder',
+      'Plumber',
+      'Electrian',
+      'Carpenter',
+      'Painter',
+      'Plasterer',
+    ],
   },
-  sites: [
+  site: [
     {
       type: Schema.Type.ObjectId,
       ref: 'Site',
