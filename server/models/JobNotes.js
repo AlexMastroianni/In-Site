@@ -1,23 +1,21 @@
 const { Schema, model } = require('mongoose');
 
 const noteSchema = new Schema({
-  author: [
-    {
-      type: Schema.Type.ObjectId,
-      ref: 'User',
-    },
-  ],
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
   content: {
     type: String,
   },
-  site_id: [
-    {
-      type: Schema.Type.ObjectId,
-      ref: 'Site',
-    },
-  ],
+  siteId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Site',
+  },
+
   date: {
     type: Date,
+    default: Date.now,
   },
 });
 

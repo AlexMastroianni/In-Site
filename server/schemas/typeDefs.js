@@ -6,26 +6,27 @@ const typeDefs = gql`
     username: String
     company: String
     trade: String
-    sites: Site
+    sites: [Site]
   }
 
   type Site {
     _id: ID
-    location: [Number]
+    lat: Number
+    Long: Number
     classifcation: String
     catorgery: String
-    users: User
+    users: [User]
   }
 
   type Note {
     _id: ID
-    auther: User
+    author: User
     content: String
-    sites: Site
+    site: Site
     date: Date
   }
 
-  type Comments {
+  type Comment {
     _id: ID
     notes: Note
     conent: String

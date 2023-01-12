@@ -2,10 +2,6 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-  // id: {
-  //   type: String,
-  //   required: true,
-  // },
   email: {
     type: String,
     required: true,
@@ -35,9 +31,9 @@ const userSchema = new Schema({
       'Plasterer',
     ],
   },
-  site: [
+  sites: [
     {
-      type: Schema.Type.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Site',
     },
   ],
