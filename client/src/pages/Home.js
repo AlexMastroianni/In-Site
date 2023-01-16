@@ -6,16 +6,7 @@ const Home = () => {
   return (
     <>
       <SideBar />
-      <div
-        className="HomeContainer"
-        style={{
-          paddingLeft: 0,
-          marginLeft: 0,
-          marginLRight: 0,
-          height: '100vh',
-          width: '100vh',
-        }}
-      >
+      <div className="HomeContainer">
         <Dashboard />
       </div>
     </>

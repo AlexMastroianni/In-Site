@@ -13,10 +13,7 @@ const noteSchema = new Schema({
     ref: 'Site',
   },
 
-  date: {
-    type: Date,
-    default: Date.now,
-  },
+  date: String,
 });
 
 const Note = model('Note', noteSchema);

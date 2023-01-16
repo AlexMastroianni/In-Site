@@ -11,6 +11,22 @@
   font-family: 'Poppins', sans-serif;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
@@ -207,7 +223,9 @@ input:focus {
 }
 
 .dashboard {
-  margin-left: 200%;
+  padding-left: 300px;
+}
+.sites {
   padding-left: 300px;
 }
 
@@ -219,6 +237,15 @@ input:focus {
 .HomeContainer {
   display: flex;
 }
-.column {
-  border: 1px solid red;
+
+.login {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.loginPage {
+  text-align: left;
+  display: inline-block;
+  margin: 100px;
 }

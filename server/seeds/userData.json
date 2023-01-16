@@ -1,0 +1,57 @@
+[
+  {
+    "email": "alex@test.com",
+    "password": "abc12345",
+    "username": "SparkyAlex",
+    "company": "Dvine",
+    "trade": "Electrian"
+  },
+
+  {
+    "email": "john@test.com",
+    "password": "abc12345",
+    "username": "jonnyBOY",
+    "company": "Dvine",
+    "trade": "Electrian"
+  },
+
+  {
+    "email": "sara@test.com",
+    "password": "abc12345",
+    "username": "saraiscool",
+    "company": "SYDA",
+    "trade": "Architect"
+  },
+
+  {
+    "email": "bob@test.com",
+    "password": "abc12345",
+    "username": "bobthebuilder",
+    "company": "NB Building",
+    "trade": "Builder"
+  },
+
+  {
+    "email": "joey@test.com",
+    "password": "abc12345",
+    "username": "smellyJoey",
+    "company": "All Flow",
+    "trade": "Plumber"
+  },
+
+  {
+    "email": "chris@test.com",
+    "password": "abc12345",
+    "username": "OnlyLines",
+    "company": "Perfect Paint",
+    "trade": "Painter"
+  },
+
+  {
+    "email": "Lisa@test.com",
+    "password": "abc12345",
+    "username": "LadyTradie",
+    "company": "NB Building",
+    "trade": "Carpenter"
+  }
+]

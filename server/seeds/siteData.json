@@ -1,0 +1,37 @@
+[
+  {
+    "name": "48 The Grove",
+    "lat": "31.456",
+    "long": "150.4056",
+    "classifcation": "Residenal",
+    "category": "Re-Build"
+  },
+  {
+    "name": "28 Warrangi",
+    "lat": "31.456",
+    "long": "150.4056",
+    "classifcation": "Residenal",
+    "category": "Reno"
+  },
+  {
+    "name": "59 Bower",
+    "lat": "31.456",
+    "long": "150.4056",
+    "classifcation": "Residenal",
+    "category": "Re-Build"
+  },
+  {
+    "name": "The Cube Gym",
+    "lat": "31.456",
+    "long": "150.4056",
+    "classifcation": "Commersial",
+    "category": "Service"
+  },
+  {
+    "name": "The Yard - Retro Cars",
+    "lat": "31.456",
+    "long": "150.4056",
+    "classifcation": "Industrial",
+    "category": "Service"
+  }
+]
