@@ -15,7 +15,11 @@ function Welcome(props) {
     <div>
       <div class="tile is-parent">
         <article class="tile is-child box">
-          {user ? <p class="title">Welcome {user.username} </p> : <p>user</p>}
+          {user ? (
+            <p class="title">Welcome {user.username} </p>
+          ) : (
+            <p class="title">Welcome</p>
+          )}
           <br></br>
           <p class="subtitle">
             You have *NumberOfCurrentSites* active, Smash it out
