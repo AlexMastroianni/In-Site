@@ -1,15 +1,20 @@
 import React from 'react';
 
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../../utils/queries';
-import infoGraphic from '../../assets/infographic.png';
+import { QUERY_USER, QUERY_ALL_SITES } from '../../utils/queries';
+import BarChart from '../BarChart';
 
 function Welcome(props) {
-  const { data } = useQuery(QUERY_USER);
+  const { users } = useQuery(QUERY_USER);
+  const { sites } = useQuery(QUERY_ALL_SITES);
   let user;
+  let site;
 
-  if (data) {
-    user = data.user;
+  if (users) {
+    user = users.user;
+  }
+  if (sites) {
+    site = sites.sites;
   }
   return (
     <div>
@@ -21,9 +26,12 @@ function Welcome(props) {
             <p class="title">Welcome</p>
           )}
           <br></br>
-          <p class="subtitle">
-            You have *NumberOfCurrentSites* active, Smash it out
-          </p>
+
+          {site ? (
+            <p class="subtitle">You have {sites.length} active, Smash it out</p>
+          ) : (
+            <p class="subtitle">You have abit to work on</p>
+          )}
           <div class="content">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
@@ -46,11 +54,7 @@ function Welcome(props) {
             <p class="title">Workload</p>
 
             <div class="content">
-              <img
-                className="infographic"
-                src={infoGraphic}
-                alt={'infographic'}
-              />
+              <BarChart />
             </div>
           </article>
         </div>

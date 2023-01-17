@@ -9,6 +9,8 @@ import {
 } from 'cdbreact';
 import Auth from '../../utils/auth';
 
+<i class="fa-thin fa-house"></i>;
+
 const SideBar = () => {
   return (
     <container className="dashboard">
@@ -19,13 +21,13 @@ const SideBar = () => {
           </CDBSidebarHeader>
           <CDBSidebarContent>
             <CDBSidebarMenu>
-              <CDBSidebarMenuItem icon="th-large">
+              <CDBSidebarMenuItem icon="fa-solid fa-house">
                 <a href="/sites">Sites</a>
               </CDBSidebarMenuItem>
-              <CDBSidebarMenuItem icon="sticky-note">
+              <CDBSidebarMenuItem icon="fa fa-user">
                 <a href="/users">Users</a>
               </CDBSidebarMenuItem>
-              <CDBSidebarMenuItem icon="credit-card" iconType="solid">
+              <CDBSidebarMenuItem icon="chart-line" iconType="solid">
                 <a href="/metrics">Metrics</a>
               </CDBSidebarMenuItem>
             </CDBSidebarMenu>
