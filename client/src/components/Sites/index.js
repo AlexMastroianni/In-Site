@@ -1,4 +1,5 @@
 import React from 'react';
+import DoughnutChart from '../DoughnutChart';
 
 function Sites(props) {
   return (
@@ -34,6 +35,14 @@ function Sites(props) {
                 Maecenas non massa sem. Etiam finibus odio quis feugiat
                 facilisis.
               </p>
+            </div>
+          </article>
+          <article class="tile is-child box">
+            <p class="title">Where You are At</p>
+            <br></br>
+            <p class="subtitle">Here is what happening</p>
+            <div class="content">
+              <DoughnutChart />
             </div>
           </article>
         </div>

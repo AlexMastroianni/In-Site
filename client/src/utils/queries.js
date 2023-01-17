@@ -53,12 +53,12 @@ export const QUERY_CATEGORIES = gql`
 `;
 
 export const QUERY_USER = gql`
-  {
+  query user {
     user {
-      id
-      # username
-      # company
-      # trade
+      _id
+      username
+      company
+      trade
       # site {
       #   _id
       #   name

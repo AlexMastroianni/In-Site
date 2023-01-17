@@ -6,16 +6,18 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 const resolvers = {
   Query: {
     user: async (parent, args, context) => {
+      console.log('context', context.user);
       if (context.user) {
-        const user = await User.findById({ _id: context.user._id }).populate({
-          path: 'site.notes',
-          populate: 'site',
-        });
+        const user = await User.findById({ _id: context.user._id });
+        //   .populate({
+        //     path: 'site.notes',
+        //     populate: 'site',
+        //   });
 
         return user;
       }
 
-      throw new AuthenticationError('Not logged in');
+      // throw new AuthenticationError('Not logged in');
     },
     sites: async () => {
       return await Site.find();
@@ -29,12 +31,12 @@ const resolvers = {
     },
   },
   Mutation: {
-    // addUser: async (parent, args) => {
-    //   const user = await User.create(args);
-    //   const token = signToken(user);
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
 
-    //   return { token, user };
-    // },
+      return { token, user };
+    },
 
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
