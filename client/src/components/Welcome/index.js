@@ -3,13 +3,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../../utils/queries';
 import BarChart from '../BarChart';
 
-function getUser() {
-  const { data } = useQuery(QUERY_USER);
-
-  let user;
-  let site;
-}
-
 function Welcome() {
   const { data } = useQuery(QUERY_USER);
 
