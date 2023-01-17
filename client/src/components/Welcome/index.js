@@ -1,31 +1,26 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../../utils/queries';
+import { QUERY_ALL_SITES, QUERY_USER } from '../../utils/queries';
 import BarChart from '../BarChart';
 
 function Welcome() {
-  const { data } = useQuery(QUERY_USER);
-
-  let user;
-  let site;
-
-  if (data) {
-    user = data.user;
-  }
+  const { loading, data } = useQuery(QUERY_USER, QUERY_ALL_SITES);
+  const users = data?.user || [];
+  const site = data?.sites || [];
 
   return (
     <div>
       <div class="tile is-parent">
         <article class="tile is-child box">
-          {user ? (
-            <p class="title">Welcome {user.username} </p>
+          {users ? (
+            <p class="title">Welcome {users.username} </p>
           ) : (
             <p class="title">Welcome</p>
           )}
           <br></br>
 
           {site ? (
-            <p class="subtitle">You have active, Smash it out</p>
+            <p class="subtitle">You have {site.length} active , Smash it out</p>
           ) : (
             <p class="subtitle">You have abit to work on</p>
           )}
