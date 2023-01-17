@@ -5,22 +5,26 @@ import BarChart from '../BarChart';
 
 function Welcome() {
   const { loading, data } = useQuery(QUERY_USER, QUERY_ALL_SITES);
-  const users = data?.user || [];
-  const site = data?.sites || [];
+
+  const user = data?.user || [];
+  const sites = data?.sites || [];
+
+  console.log('user data', data?.user);
+  console.log('site data', data?.sites);
 
   return (
     <div>
       <div class="tile is-parent">
         <article class="tile is-child box">
-          {users ? (
-            <p class="title">Welcome {users.username} </p>
+          {user ? (
+            <p class="title">Welcome {user.username} </p>
           ) : (
             <p class="title">Welcome</p>
           )}
           <br></br>
 
-          {site ? (
-            <p class="subtitle">You have {site.length} active , Smash it out</p>
+          {sites ? (
+            <p class="subtitle">You have {sites.length} sites active</p>
           ) : (
             <p class="subtitle">You have abit to work on</p>
           )}
@@ -38,6 +42,13 @@ function Welcome() {
           <article class="tile is-child box">
             <p class="title">Sites</p>
             <p class="subtitle">Map lists of sites here</p>
+            <div class="content">
+              <ul>
+                {sites.map((sites) => (
+                  <li key={sites.id}>{sites.name}</li>
+                ))}
+              </ul>
+            </div>
           </article>
         </div>
 

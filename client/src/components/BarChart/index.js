@@ -7,7 +7,7 @@ function barChart() {
     datasets: [
       {
         label: 'Metrics',
-        data: [6, 19, 3, 5],
+        data: [6, 19, 5, 5],
         backgroundColor: [
           'rgba(255, 99, 132 )',
           'rgba(54, 162, 235)',

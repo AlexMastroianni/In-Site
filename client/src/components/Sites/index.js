@@ -1,14 +1,39 @@
 import React from 'react';
 import DoughnutChart from '../DoughnutChart';
+import {
+  QUERY_ALL_SITES,
+  QUERY_USER,
+  QUERY_ALL_NOTES,
+} from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 
-function Sites(props) {
+function Sites() {
+  const { loading, data } = useQuery(
+    QUERY_USER,
+    QUERY_ALL_SITES,
+    QUERY_ALL_NOTES
+  );
+  const sites = data?.sites || [];
+  const users = data?.users || [];
+  const notes = data?.notes || [];
+
   return (
     <div className="sites">
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child box">
             <p class="title">Sites</p>
-            <p class="subtitle">*add site name*</p>
+            <div class="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+                ornare magna eros, eu pellentesque tortor vestibulum ut.
+                Maecenas non massa sem. Etiam finibus odio quis feugiat
+                facilisis.
+              </p>
+            </div>
+            <p class="subtitle">
+              <b>{sites.length} Sites Running</b>, Bit on
+            </p>
           </article>
         </div>
 
@@ -17,7 +42,13 @@ function Sites(props) {
             <p class="title">Trades</p>
 
             <div class="content">
-              <p>*display sites linked to site*</p>
+              <div class="content">
+                <ul>
+                  {users.map((users) => (
+                    <li key={users.id}>{users.trade}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </article>
         </div>
@@ -29,12 +60,13 @@ function Sites(props) {
             <br></br>
             <p class="subtitle">Here is what happening</p>
             <div class="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                ornare magna eros, eu pellentesque tortor vestibulum ut.
-                Maecenas non massa sem. Etiam finibus odio quis feugiat
-                facilisis.
-              </p>
+              <ul>
+                {notes.map((notes) => (
+                  <li key={notes.id}>
+                    {notes.author}:{notes.content}
+                  </li>
+                ))}
+              </ul>
             </div>
           </article>
           <article class="tile is-child box">

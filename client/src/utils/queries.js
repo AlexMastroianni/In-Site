@@ -6,48 +6,39 @@ export const QUERY_NOTE = gql`
       _id
       author
       content
-      site
-      date
-      site {
-        _id
-      }
+    }
+  }
+`;
+
+export const QUERY_ALL_NOTES = gql`
+  query notes {
+    notes {
+      _id
+      author
+      content
     }
   }
 `;
 
 export const QUERY_ALL_SITES = gql`
-  {
+  query sites {
     sites {
       _id
       lat
       long
       classifcation
       category
-      User {
-        username
-        company
-        trade
-      }
+      name
     }
   }
 `;
 
 export const QUERY_ALL_USERS = gql`
-  {
+  query users {
     users {
       username
       company
       trade
-      sites
-    }
-  }
-`;
-
-export const QUERY_CATEGORIES = gql`
-  {
-    categories {
-      _id
-      name
     }
   }
 `;
@@ -59,17 +50,15 @@ export const QUERY_USER = gql`
       username
       company
       trade
-      # site {
-      #   _id
-      #   name
-      #   category
-      #   classifcation
-      #   note {
-      #     _id
-      #     author
-      #     content
-      #   }
-      # }
+    }
+    sites {
+      name
+      category
+    }
+    users {
+      username
+      company
+      trade
     }
   }
 `;

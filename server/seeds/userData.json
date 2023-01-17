@@ -8,14 +8,6 @@
   },
 
   {
-    "email": "john@test.com",
-    "password": "abc12345",
-    "username": "jonnyBOY",
-    "company": "Dvine",
-    "trade": "Electrian"
-  },
-
-  {
     "email": "sara@test.com",
     "password": "abc12345",
     "username": "saraiscool",
