@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { ADD_NOTE, REMOVE_FROM_SITE } from './actions';
+import { ADD_NOTE, REMOVE_NOTE } from './actions';
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -9,8 +9,8 @@ export const reducer = (state, action) => {
         site: [...state.site, action.note],
       };
 
-    case REMOVE_FROM_SITE:
-      let newState = state.site.filter((product) => {
+    case REMOVE_NOTE:
+      let newState = state.note.filter((product) => {
         return state._id !== action._id;
       });
 

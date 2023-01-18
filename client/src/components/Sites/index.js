@@ -1,13 +1,16 @@
 import React from 'react';
+import { useStoreContext } from '../../utils/GlobalState';
 import DoughnutChart from '../DoughnutChart';
 import {
   QUERY_ALL_SITES,
   QUERY_USER,
   QUERY_ALL_NOTES,
 } from '../../utils/queries';
+import { REMOVE_NOTE } from '../../utils/actions';
 import { useQuery } from '@apollo/client';
+import { idbPromise } from '../../utils/helpers';
 
-function Sites() {
+const Sites = ({ item }) => {
   const { loading, data } = useQuery(
     QUERY_USER,
     QUERY_ALL_SITES,
@@ -17,10 +20,27 @@ function Sites() {
   const users = data?.users || [];
   const notes = data?.notes || [];
 
-  console.log('user data', data?.users);
-  console.log('user sites', data?.sites);
-  console.log('user notes', data?.notes);
+  const [, dispatch] = useStoreContext();
 
+  const removeNote = (item) => {
+    dispatch({
+      type: REMOVE_NOTE,
+      _id: item._id,
+    });
+    idbPromise('notes', 'delete', { ...item });
+  };
+
+  const onChange = (e) => {
+    const value = e.target.value;
+    if (value === '0') {
+      dispatch({
+        type: REMOVE_NOTE,
+        _id: item._id,
+      });
+      idbPromise('cart', 'delete', { ...item });
+    }
+    console.log(e);
+  };
   return (
     <div className="sites">
       <div class="tile is-ancestor">
@@ -49,7 +69,7 @@ function Sites() {
               <div class="content">
                 <ul>
                   {users.map((users) => (
-                    <li key={users.id}>
+                    <li key={users.username}>
                       <b>{users.username}</b>: {users.trade}
                     </li>
                   ))}
@@ -68,7 +88,17 @@ function Sites() {
             <div class="content">
               <ul>
                 {notes.map((notes) => (
-                  <li key={notes.id}>- {notes.content}</li>
+                  <li key={notes.content}>
+                    - {notes.content}{' '}
+                    <span
+                      onChange={onChange}
+                      role="img"
+                      aria-label="trash"
+                      onClick={() => removeNote(item)}
+                    >
+                      🗑️
+                    </span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -107,6 +137,6 @@ function Sites() {
       </div>
     </div>
   );
-}
+};
 
 export default Sites;
