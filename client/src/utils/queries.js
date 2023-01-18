@@ -60,6 +60,10 @@ export const QUERY_USER = gql`
       company
       trade
     }
+    notes {
+      author
+      content
+    }
   }
 `;
 

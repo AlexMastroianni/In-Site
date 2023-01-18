@@ -21,10 +21,8 @@ const typeDefs = gql`
 
   type Note {
     _id: ID
-    author: User
+    author: String
     content: String
-    site: Site
-    date: String
   }
 
   type Comment {

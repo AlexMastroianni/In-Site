@@ -17,6 +17,10 @@ function Sites() {
   const users = data?.users || [];
   const notes = data?.notes || [];
 
+  console.log('user data', data?.users);
+  console.log('user sites', data?.sites);
+  console.log('user notes', data?.notes);
+
   return (
     <div className="sites">
       <div class="tile is-ancestor">
@@ -45,7 +49,9 @@ function Sites() {
               <div class="content">
                 <ul>
                   {users.map((users) => (
-                    <li key={users.id}>{users.trade}</li>
+                    <li key={users.id}>
+                      <b>{users.username}</b>: {users.trade}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -62,9 +68,7 @@ function Sites() {
             <div class="content">
               <ul>
                 {notes.map((notes) => (
-                  <li key={notes.id}>
-                    {notes.author}:{notes.content}
-                  </li>
+                  <li key={notes.id}>- {notes.content}</li>
                 ))}
               </ul>
             </div>
