@@ -4,13 +4,11 @@ import { QUERY_ALL_SITES, QUERY_USER } from '../../utils/queries';
 import BarChart from '../BarChart';
 
 function Welcome() {
+  // eslint-disable-next-line no-unused-vars
   const { loading, data } = useQuery(QUERY_USER, QUERY_ALL_SITES);
 
   const user = data?.user || [];
   const sites = data?.sites || [];
-
-  console.log('user data', data?.user);
-  console.log('site data', data?.sites);
 
   return (
     <div>

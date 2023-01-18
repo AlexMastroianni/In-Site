@@ -11,6 +11,7 @@ import { useQuery } from '@apollo/client';
 import { idbPromise } from '../../utils/helpers';
 
 const Sites = ({ item }) => {
+  // eslint-disable-next-line no-unused-vars
   const { loading, data } = useQuery(
     QUERY_USER,
     QUERY_ALL_SITES,
@@ -27,7 +28,7 @@ const Sites = ({ item }) => {
       type: REMOVE_NOTE,
       _id: item._id,
     });
-    idbPromise('notes', 'delete', { ...item });
+    idbPromise('note', 'delete', { ...item });
   };
 
   const onChange = (e) => {
@@ -37,7 +38,7 @@ const Sites = ({ item }) => {
         type: REMOVE_NOTE,
         _id: item._id,
       });
-      idbPromise('cart', 'delete', { ...item });
+      idbPromise('note', 'delete', { ...item });
     }
     console.log(e);
   };
@@ -88,7 +89,7 @@ const Sites = ({ item }) => {
             <div class="content">
               <ul>
                 {notes.map((notes) => (
-                  <li key={notes.content}>
+                  <li key={notes._id}>
                     - {notes.content}{' '}
                     <span
                       onChange={onChange}
