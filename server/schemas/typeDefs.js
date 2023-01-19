@@ -25,6 +25,12 @@ const typeDefs = gql`
     content: String
   }
 
+  type Post {
+    id: ID
+    title: String
+    description: String
+  }
+
   type Comment {
     _id: ID
     notes: Note
@@ -35,17 +41,27 @@ const typeDefs = gql`
     sites: [Site]
     notes: [Note]
     user: User
+    getAll: [Post]
   }
   type Auth {
     token: ID
     user: User
   }
+  input NoteInput {
+    author: String
+    content: String
+  }
+
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
 
     updateUser(username: String!, email: String!, password: String!): User
 
     login(email: String!, password: String!): Auth
+
+    createNote(Note: NoteInput): Note
+    updateNote(id: String, Note: NoteInput): Note
+    deleteNote(id: String): String
   }
 `;
 

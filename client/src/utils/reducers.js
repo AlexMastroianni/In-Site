@@ -10,10 +10,9 @@ export const reducer = (state, action) => {
       };
 
     case REMOVE_NOTE:
-      let newState = state.note.filter((product) => {
-        return state._id !== action._id;
+      let newState = state.site.filter((notes) => {
+        return notes._id !== action._id;
       });
-
       return {
         note: newState,
       };

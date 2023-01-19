@@ -12,17 +12,10 @@ export const LOGIN = gql`
 `;
 
 export const ADD_NOTE = gql`
-  mutation addNote($user: [ID]!) {
-    addNote(user: $user) {
+  mutation addNote($content: String!) {
+    addNote(content: $content) {
       author
       content
-      sites {
-        _id
-        name
-        user {
-          username
-        }
-      }
     }
   }
 `;

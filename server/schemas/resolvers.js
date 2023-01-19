@@ -55,6 +55,26 @@ const resolvers = {
 
       return { token, user };
     },
+    createNote: async (parent, args, context, info) => {
+      const { author, content } = args.note;
+      const note = await new Note({ author, content }).save();
+      return note;
+    },
+    updateNote: async (parent, args, context, info) => {
+      const { id } = args;
+      const { author, content } = args.note;
+      const note = await Note.findByIdAndUpdate(
+        id,
+        { author, content },
+        { new: true }
+      );
+      return note;
+    },
+    deleteNote: async (parent, args, context, info) => {
+      const { id } = args;
+      await Note.findByIdAndDelete(id);
+      return 'Deleted';
+    },
   },
 };
 

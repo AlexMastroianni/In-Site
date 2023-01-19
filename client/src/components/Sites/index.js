@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import DoughnutChart from '../DoughnutChart';
+import AddNote from '../AddNote';
 import {
   QUERY_ALL_SITES,
   QUERY_USER,
@@ -113,27 +114,8 @@ const Sites = ({ item }) => {
             </div>
           </article>
         </div>
-        <div class="tile is-parent">
-          <article class="tile is-child box">
-            <p class="title">Whats Next?</p>
-            <br></br>
-            <p class="subtitle">Put the next job in here!</p>
-            <div class="content">
-              <input
-                class="input is-rounded "
-                type="text"
-                placeholder="Rounded input"
-              ></input>
-              <div class="field is-grouped p-4">
-                <p class="control">
-                  <button class="button is-link">Save changes</button>
-                </p>
-                <p class="control">
-                  <button class="button">Cancel</button>
-                </p>
-              </div>
-            </div>
-          </article>
+        <div>
+          <AddNote />
         </div>
       </div>
     </div>
