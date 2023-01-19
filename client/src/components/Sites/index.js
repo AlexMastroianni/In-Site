@@ -1,54 +1,32 @@
 import React from 'react';
-import { useStoreContext } from '../../utils/GlobalState';
 import DoughnutChart from '../DoughnutChart';
 import AddNote from '../AddNote';
-import {
-  QUERY_ALL_SITES,
-  QUERY_USER,
-  QUERY_ALL_NOTES,
-} from '../../utils/queries';
-import { REMOVE_NOTE } from '../../utils/actions';
-import { useQuery } from '@apollo/client';
-import { idbPromise } from '../../utils/helpers';
+import { GET_ALL, QUERY_ALL_SITES, QUERY_USER } from '../../utils/queries';
+import { useMutation, useQuery } from '@apollo/client';
+import { DELETE_POST } from '../../utils/mutations';
 
-const Sites = ({ item }) => {
+function Sites() {
   // eslint-disable-next-line no-unused-vars
-  const { loading, data } = useQuery(
-    QUERY_USER,
-    QUERY_ALL_SITES,
-    QUERY_ALL_NOTES
-  );
+  const { loading, data } = useQuery(QUERY_USER, QUERY_ALL_SITES, GET_ALL);
+  const [deletePost, { errr }] = useMutation(DELETE_POST);
   const sites = data?.sites || [];
   const users = data?.users || [];
-  const notes = data?.notes || [];
+  const posts = data?.getALL || [];
 
-  const [, dispatch] = useStoreContext();
-
-  const removeNote = (item) => {
-    dispatch({
-      type: REMOVE_NOTE,
-      _id: item._id,
+  const removePost = (id) => {
+    deletePost({
+      variables: {
+        id: id,
+      },
     });
-    idbPromise('note', 'delete', { ...item });
   };
 
-  const onChange = (e) => {
-    const value = e.target.value;
-    if (value === '0') {
-      dispatch({
-        type: REMOVE_NOTE,
-        _id: item._id,
-      });
-      idbPromise('note', 'delete', { ...item });
-    }
-    console.log(e);
-  };
   return (
     <div className="sites">
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child box">
-            <p class="title">Sites</p>
+            <p class="title">Site</p>
             <div class="content">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
@@ -58,7 +36,7 @@ const Sites = ({ item }) => {
               </p>
             </div>
             <p class="subtitle">
-              <b>{sites.length} Sites Running</b>, Bit on
+              <b>{posts.length} Jobs to complete</b>, Bit on
             </p>
           </article>
         </div>
@@ -89,14 +67,13 @@ const Sites = ({ item }) => {
             <p class="subtitle">Here is what happening</p>
             <div class="content">
               <ul>
-                {notes.map((notes) => (
-                  <li key={notes._id}>
-                    - {notes.content}{' '}
+                {posts.map((posts) => (
+                  <li key={posts._id}>
+                    - {posts.content}{' '}
                     <span
-                      onChange={onChange}
                       role="img"
                       aria-label="trash"
-                      onClick={() => removeNote(item)}
+                      onClick={() => removePost(posts.id)}
                     >
                       🗑️
                     </span>
@@ -120,6 +97,6 @@ const Sites = ({ item }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Sites;

@@ -1,25 +1,5 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_NOTE = gql`
-  query getNote($site: ID) {
-    notes(Site: $site) {
-      _id
-      author
-      content
-    }
-  }
-`;
-
-export const QUERY_ALL_NOTES = gql`
-  query notes {
-    notes {
-      _id
-      author
-      content
-    }
-  }
-`;
-
 export const QUERY_ALL_SITES = gql`
   query sites {
     sites {
@@ -60,17 +40,14 @@ export const QUERY_USER = gql`
       company
       trade
     }
-    notes {
+  }
+`;
+export const GET_ALL = gql`
+  query getALL {
+    getAll {
+      id
       author
       content
     }
   }
 `;
-
-// export const QUERY_CHECKOUT = gql`
-//   query getCheckout($products: [ID]!) {
-//     checkout(products: $products) {
-//       session
-//     }
-//   }
-// `;

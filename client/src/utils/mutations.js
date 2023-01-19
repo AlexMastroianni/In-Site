@@ -11,15 +11,6 @@ export const LOGIN = gql`
   }
 `;
 
-export const ADD_NOTE = gql`
-  mutation addNote($content: String!) {
-    addNote(content: $content) {
-      author
-      content
-    }
-  }
-`;
-
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
@@ -28,5 +19,21 @@ export const ADD_USER = gql`
         _id
       }
     }
+  }
+`;
+
+export const CREATE_POST = gql`
+  mutation createPost($author: String, $content: String) {
+    createPost(post: { author: $author, content: $content }) {
+      id
+      author
+      content
+    }
+  }
+`;
+
+export const DELETE_POST = gql`
+  mutation deletePost($id: String) {
+    deletePost(id: $id)
   }
 `;

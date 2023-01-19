@@ -20,6 +20,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "apollo-server-express": "^3.0.0-rc.1",
     "chart.js": "^4.1.2",
     "react-chartjs-2": "^5.2.0",
     "react-simple-typewriter": "^5.0.1"

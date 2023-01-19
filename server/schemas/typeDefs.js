@@ -18,28 +18,15 @@ const typeDefs = gql`
     category: String
     users: [User]
   }
-
-  type Note {
-    _id: ID
+  type Post {
+    id: ID
     author: String
     content: String
   }
 
-  type Post {
-    id: ID
-    title: String
-    description: String
-  }
-
-  type Comment {
-    _id: ID
-    notes: Note
-    conent: String
-  }
   type Query {
     users: [User]
     sites: [Site]
-    notes: [Note]
     user: User
     getAll: [Post]
   }
@@ -47,7 +34,7 @@ const typeDefs = gql`
     token: ID
     user: User
   }
-  input NoteInput {
+  input PostInput {
     author: String
     content: String
   }
@@ -59,9 +46,9 @@ const typeDefs = gql`
 
     login(email: String!, password: String!): Auth
 
-    createNote(Note: NoteInput): Note
-    updateNote(id: String, Note: NoteInput): Note
-    deleteNote(id: String): String
+    createPost(post: PostInput): Post
+    updatePost(id: String, post: PostInput): Post
+    deletePost(id: String): String
   }
 `;
 
