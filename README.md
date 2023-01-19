@@ -41,8 +41,8 @@ There is a serious flaw in construction managment. The indusrty is still relying
 
 ## GitHub
 
-Repo of all our hard work can be found [here](https://github.com/AlexMastroianni/in-site)
+[REPO](https://github.com/AlexMastroianni/in-site)
 
 ## Deployed Application
 
-In Site can be found deployed [here](https://still-brushlands-64043.herokuapp.com/signup)
+[LIVE_SITE](https://still-brushlands-64043.herokuapp.com/signup)
