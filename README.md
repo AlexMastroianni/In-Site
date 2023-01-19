@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# In Site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Construction focused, CRM, Project Managment Tool
 
-## Available Scripts
+## Why and Who?
 
-In the project directory, you can run:
+There is a serious flaw in construction managment. The indusrty is still relying on 2-5 project managagers as well as a builder and not to mention all the contractors. This solution will allow for highlevel and colabtrive job tracking from the project managager all the way through to the painter
 
-### `npm start`
+### Tech
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node JS
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React JS
 
-### `npm test`
+- Chart JS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- JWT
 
-### `npm run build`
+## Functionality
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. A user is greeted by a signup page where they can create a user, If they are already a user they can use to login through the login page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. User is presented with a dashboard view of all the infomation relevent to that user including how many active sites they have, what those sites are and an info graphic the metrics of the site.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. The User then can view more detailed infomation about each site using the side bar. From there the user will be able tp view the users linked to the site, metrics about that specific job, and add tasked relevent to the job.
 
-### `npm run eject`
+## Future Development Plans
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- fully function tasks functionalliy including user assigments, deadlines, vertual contracts
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- interactive onboading signup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Industry standard workflows and timelines
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Presise tracking of all metrics
 
-## Learn More
+- Integrations with APIs such as google maps and push notifcation services.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## GitHub
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Repo of all our hard work can be found [here](https://github.com/AlexMastroianni/in-site)
 
-### Code Splitting
+## Deployed Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+In Site can be found deployed [here](https://still-brushlands-64043.herokuapp.com/signup)
