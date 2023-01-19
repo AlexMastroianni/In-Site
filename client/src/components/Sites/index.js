@@ -11,7 +11,7 @@ function Sites() {
   const [deletePost, { errr }] = useMutation(DELETE_POST);
   const sites = data?.sites || [];
   const users = data?.users || [];
-  const posts = data?.getALL || [];
+  const posts = data?.getAll || [];
 
   const removePost = (id) => {
     deletePost({
@@ -69,14 +69,14 @@ function Sites() {
               <ul>
                 {posts.map((posts) => (
                   <li key={posts._id}>
-                    - {posts.content}{' '}
-                    <span
-                      role="img"
-                      aria-label="trash"
+                    {posts.content} -{' '}
+                    <button
+                      className="button is-danger"
                       onClick={() => removePost(posts.id)}
                     >
-                      🗑️
-                    </span>
+                      {' '}
+                      Delete it{' '}
+                    </button>
                   </li>
                 ))}
               </ul>

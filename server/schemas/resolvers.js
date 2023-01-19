@@ -74,7 +74,7 @@ const resolvers = {
     },
     deletePost: async (parent, args, context, info) => {
       const { id } = args;
-      await Note.findByIdAndDelete(id);
+      await Post.findByIdAndDelete(id);
       return 'Deleted';
     },
   },

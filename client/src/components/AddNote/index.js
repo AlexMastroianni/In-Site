@@ -18,7 +18,7 @@ function AddNote() {
       },
     });
   };
-  console.log(setContent);
+
   return (
     <div class="tile is-parent">
       <article class="tile is-child box">
@@ -27,7 +27,10 @@ function AddNote() {
         <p class="subtitle">Put the next job in here!</p>
         <div>
           <div class="content">
-            <input onChange={(e) => setContent(e.target.value)} />
+            <input
+              className="input"
+              onChange={(e) => setContent(e.target.value)}
+            />
             <div class="field is-grouped p-4">
               <p class="control">
                 <button class="button is-link" onClick={() => addPost()}>
@@ -46,24 +49,3 @@ function AddNote() {
 }
 
 export default AddNote;
-
-//   return (
-//     <div className="App">
-//       {data.getAll.map((data) => (
-//         <>
-//           <p key={data.title}>
-//             {data.title}----{data.description}
-//           </p>
-//           <button onClick={() => removePost(data.id)}> Delete it </button>
-//         </>
-//       ))}
-//       <br />
-//       Title--- <input onChange={(e) => setTitle(e.target.value)} />
-//       <br />
-//       Description ---
-//       <input onChange={(e) => setDescription(e.target.value)} />
-//       <br />
-//       <button onClick={() => addPost()}>Add Post</button>
-//     </div>
-//   );
-// }

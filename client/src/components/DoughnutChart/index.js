@@ -1,13 +1,18 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
+import { QUERY_USER } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 
-function doughnutChart() {
-  const data = {
+function DoughnutChart() {
+  const data = useQuery(QUERY_USER);
+  const users = data?.users || [];
+
+  const infographic = {
     labels: ['Uncompleted', 'Completed', 'Users'],
     datasets: [
       {
         label: 'Metrics',
-        data: [19, 4, 7],
+        data: [19, 2, 9],
         backgroundColor: [
           'rgba(255, 99, 132 )',
           'rgba(54, 162, 235)',
@@ -32,9 +37,9 @@ function doughnutChart() {
   const options = {};
   return (
     <div>
-      <Doughnut data={data} options={options}></Doughnut>
+      <Doughnut data={infographic} options={options}></Doughnut>
     </div>
   );
 }
 
-export default doughnutChart;
+export default DoughnutChart;

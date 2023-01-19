@@ -40,10 +40,15 @@ export const QUERY_USER = gql`
       company
       trade
     }
+    getAll {
+      id
+      author
+      content
+    }
   }
 `;
 export const GET_ALL = gql`
-  query getALL {
+  query getAll {
     getAll {
       id
       author
