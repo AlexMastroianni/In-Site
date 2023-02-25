@@ -18,12 +18,7 @@ export const reducer = (state, action) => {
     case UPDATE_NOTE:
       return {
         ...state,
-        site: state.site.map((notes) => {
-          if (action._id === notes._id) {
-            notes.content = action.content;
-          }
-          return notes;
-        }),
+        note: [...action.note],
       };
   }
 };

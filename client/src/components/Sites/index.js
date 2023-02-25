@@ -1,17 +1,17 @@
 import React from 'react';
 import DoughnutChart from '../DoughnutChart';
 import AddNote from '../AddNote';
-import { QUERY_USER, GET_ALL } from '../../utils/queries';
+import { QUERY_ALL_USERS, GET_NOTES } from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import { DELETE_POST } from '../../utils/mutations';
 
 function Sites() {
-  const { loading: isUserLoading, data: users } = useQuery(QUERY_USER);
-  const { loading: isSiteLoading, data: posts } = useQuery(GET_ALL);
+  const { loading: isUserLoading, data: users } = useQuery(QUERY_ALL_USERS);
+  const { loading: isSiteLoading, data: posts } = useQuery(GET_NOTES);
   const [deletePost, { errr }] = useMutation(DELETE_POST);
 
   const usersData = users?.users || [];
-  const postsData = posts?.getAll || [];
+  const postsData = posts?.getALL || [];
 
   const removePost = (id) => {
     deletePost({
@@ -91,7 +91,9 @@ function Sites() {
             </div>
           </article>
         </div>
-        <AddNote />
+        <div>
+          <AddNote />
+        </div>
       </div>
     </div>
   );

@@ -14,8 +14,8 @@ export const QUERY_ALL_SITES = gql`
 `;
 
 export const QUERY_ALL_USERS = gql`
-  query users {
-    users {
+  query usersALL {
+    user {
       username
       company
       trade
@@ -47,9 +47,9 @@ export const QUERY_USER = gql`
     }
   }
 `;
-export const GET_ALL = gql`
-  query getAll {
-    getAll {
+export const GET_NOTES = gql`
+  query notes {
+    notes {
       id
       author
       content

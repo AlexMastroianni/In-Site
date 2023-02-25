@@ -1,14 +1,14 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_POST } from '../../utils/mutations';
+import { CREATE_NOTE } from '../../utils/mutations';
 import { useState } from 'react';
 
 function AddNote() {
-  const [createPost, { err }] = useMutation(CREATE_POST);
+  const [createNote, { err }] = useMutation(CREATE_NOTE);
   const [content, setContent] = useState(null);
 
-  const addPost = () => {
-    createPost({
+  const addNote = () => {
+    createNote({
       variables: {
         content: content,
       },
@@ -29,7 +29,7 @@ function AddNote() {
             />
             <div class="field is-grouped p-4">
               <p class="control">
-                <button class="button is-link" onClick={() => addPost()}>
+                <button class="button is-link" onClick={() => addNote()}>
                   Add Post
                 </button>
               </p>

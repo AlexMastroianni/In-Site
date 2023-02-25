@@ -22,9 +22,9 @@ export const ADD_USER = gql`
   }
 `;
 
-export const CREATE_POST = gql`
-  mutation createPost($author: String, $content: String) {
-    createPost(post: { author: $author, content: $content }) {
+export const CREATE_NOTE = gql`
+  mutation createNOTE($author: String, $content: String) {
+    createPost(notes: { author: $author, content: $content }) {
       id
       author
       content
