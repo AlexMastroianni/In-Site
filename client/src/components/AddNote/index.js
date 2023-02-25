@@ -1,16 +1,12 @@
 import React from 'react';
-import { useMutation, useQuery } from '@apollo/client';
-
+import { useMutation } from '@apollo/client';
 import { CREATE_POST } from '../../utils/mutations';
-import { GET_ALL } from '../../utils/queries';
 import { useState } from 'react';
 
 function AddNote() {
-  const { loading, error, data } = useQuery(GET_ALL);
   const [createPost, { err }] = useMutation(CREATE_POST);
   const [content, setContent] = useState(null);
-  const [author, setAuthor] = useState(null);
-  if (loading) return 'Loading';
+
   const addPost = () => {
     createPost({
       variables: {

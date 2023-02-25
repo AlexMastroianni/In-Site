@@ -13,7 +13,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     lat: Float
-    Long: Float
+    long: Float
     classifcation: String
     category: String
     users: [User]

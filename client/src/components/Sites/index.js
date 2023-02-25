@@ -1,17 +1,17 @@
 import React from 'react';
 import DoughnutChart from '../DoughnutChart';
 import AddNote from '../AddNote';
-import { GET_ALL, QUERY_ALL_SITES, QUERY_USER } from '../../utils/queries';
+import { QUERY_USER, GET_ALL } from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import { DELETE_POST } from '../../utils/mutations';
 
 function Sites() {
-  // eslint-disable-next-line no-unused-vars
-  const { loading, data } = useQuery(QUERY_USER, QUERY_ALL_SITES, GET_ALL);
+  const { loading: isUserLoading, data: users } = useQuery(QUERY_USER);
+  const { loading: isSiteLoading, data: posts } = useQuery(GET_ALL);
   const [deletePost, { errr }] = useMutation(DELETE_POST);
-  const sites = data?.sites || [];
-  const users = data?.users || [];
-  const posts = data?.getAll || [];
+
+  const usersData = users?.users || [];
+  const postsData = posts?.getAll || [];
 
   const removePost = (id) => {
     deletePost({
@@ -26,7 +26,7 @@ function Sites() {
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child box">
-            <p class="title">Site</p>
+            <p class="title">Sites</p>
             <div class="content">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
@@ -36,7 +36,7 @@ function Sites() {
               </p>
             </div>
             <p class="subtitle">
-              <b>{posts.length} Jobs to complete</b>, Bit on
+              <b>{postsData.length} Jobs to complete</b>, Bit on
             </p>
           </article>
         </div>
@@ -48,9 +48,9 @@ function Sites() {
             <div class="content">
               <div class="content">
                 <ul>
-                  {users.map((users) => (
-                    <li key={users.username}>
-                      <b>{users.username}</b>: {users.trade}
+                  {usersData.map((usersData) => (
+                    <li key={usersData.username}>
+                      <b>{usersData.username}</b>: {usersData.trade}
                     </li>
                   ))}
                 </ul>
@@ -67,12 +67,12 @@ function Sites() {
             <p class="subtitle">Here is what happening</p>
             <div class="content">
               <ul>
-                {posts.map((posts) => (
-                  <li key={posts._id}>
-                    {posts.content} -{' '}
+                {postsData.map((postsData) => (
+                  <li key={postsData._id}>
+                    {postsData.content} -{' '}
                     <button
                       className="button is-danger"
-                      onClick={() => removePost(posts.id)}
+                      onClick={() => removePost(postsData.id)}
                     >
                       {' '}
                       Delete it{' '}
@@ -91,9 +91,7 @@ function Sites() {
             </div>
           </article>
         </div>
-        <div>
-          <AddNote />
-        </div>
+        <AddNote />
       </div>
     </div>
   );

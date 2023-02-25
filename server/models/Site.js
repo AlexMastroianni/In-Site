@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const siteSchema = new Schema({
   name: String,
   lat: String,
-  Long: String,
+  long: String,
   classifcation: {
     type: String,
     enum: ['Residenal', 'Commersial', 'Industrial'],

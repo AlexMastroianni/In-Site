@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_SITES, QUERY_USER } from '../../utils/queries';
 import BarChart from '../BarChart';
@@ -9,6 +10,7 @@ function Welcome() {
 
   const user = data?.user || [];
   const sites = data?.sites || [];
+  console.log(data?.sites);
 
   return (
     <div>
