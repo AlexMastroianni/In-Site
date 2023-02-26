@@ -7,48 +7,61 @@ const typeDefs = gql`
     company: String
     trade: String
     sites: [Site]
+    notes: [Note]
   }
 
   type Site {
     _id: ID
     name: String
-    lat: Float
-    long: Float
+    lat: Number
+    long: Number
     classifcation: String
     category: String
     users: [User]
+    notes: [Note]
   }
   type Post {
     id: ID
-    author: String
+    author: [User]
     content: String
+    comments: [Comment]
   }
 
   type Query {
     users: [User]
     sites: [Site]
     user: User
-    getAll: [Post]
+    notes: [Note]
+    note: Note
+    comments: [Comment]
+    site(_id: ID!): Site
   }
   type Auth {
     token: ID
     user: User
   }
-  input PostInput {
-    author: String
+  input noteInput {
+    author: [User]
+    content: String
+  }
+  input commentInput {
+    note: [notes]
+    author: [User]
     content: String
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-
     updateUser(username: String!, email: String!, password: String!): User
-
     login(email: String!, password: String!): Auth
 
-    createPost(post: PostInput): Post
-    updatePost(id: String, post: PostInput): Post
-    deletePost(id: String): String
+    createNote(note: noteInput): Note
+    updateNote(id: String, note: noteInput): Note
+    deleteNote(id: String): String
+
+    createComment(note: commentInput): Note
+    updateComment(id: String, comment: commentInput): Note
+    deleteComment(id: String): String
   }
 `;
 

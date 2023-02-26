@@ -1,10 +1,15 @@
 const { Schema, model } = require('mongoose');
 
-const postSchema = new Schema({
+const noteSchema = new Schema({
   author: String,
   content: String,
+  PostDate: {
+    type: Date,
+    default: Date.now,
+  },
+  comments: [Comment.schema],
 });
 
-const Post = model('post', postSchema);
+const Note = model('note', noteSchema);
 
-module.exports = Post;
+module.exports = Note;

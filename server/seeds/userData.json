@@ -1,6 +1,6 @@
 [
   {
-    "email": "alex@gmail.com.au",
+    "email": "alexmastroianni@gmail.com.au",
     "password": "Password1234!",
     "username": "SparkyAlex",
     "company": "Dvine",
@@ -8,7 +8,7 @@
   },
 
   {
-    "email": "sara@test.com",
+    "email": "SarahSilverman@gmail.com",
     "password": "abc12345",
     "username": "saraiscool",
     "company": "SYDA",
@@ -16,7 +16,7 @@
   },
 
   {
-    "email": "bob@test.com",
+    "email": "dave@dvinesmarthome.com",
     "password": "abc12345",
     "username": "bobthebuilder",
     "company": "NB Building",

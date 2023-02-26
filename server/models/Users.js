@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const Site = require('./Site');
 
 const userSchema = new Schema({
   email: {
@@ -31,12 +32,8 @@ const userSchema = new Schema({
       'Plasterer',
     ],
   },
-  sites: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Site',
-    },
-  ],
+  sites: [Site.schema],
+  notes: [Note.schema],
 });
 
 userSchema.pre('save', async function (next) {

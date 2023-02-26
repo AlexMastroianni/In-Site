@@ -1,9 +1,10 @@
 const { Schema, model } = require('mongoose');
+const Note = require('./JobNotes');
 
 const siteSchema = new Schema({
   name: String,
-  lat: String,
-  long: String,
+  lat: Number,
+  long: Number,
   classifcation: {
     type: String,
     enum: ['Residenal', 'Commersial', 'Industrial'],
@@ -12,6 +13,8 @@ const siteSchema = new Schema({
     type: String,
     enum: ['Reno', 'Re-Build', 'Service'],
   },
+  users: [User.schema],
+  notes: [Note.schema],
 });
 
 const Site = model('Site', siteSchema);
