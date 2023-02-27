@@ -1,21 +1,22 @@
 import React, { createContext, useContext } from 'react';
-import { useProductReducer } from './reducers';
+import { useInsiteReducer } from './reducers';
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
 
 const DashboardProvider = ({ value = [], ...props }) => {
-  const [state, dispatch] = useProductReducer({
+  const [state, dispatch] = useInsiteReducer({
     notes: [],
     sites: [],
     users: [],
+    comments: [],
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
 };
 
-const useStoreContext = () => {
-  return useContext(StoreContext);
+const useInisteContext = () => {
+  return useContext(useInisteContext);
 };
 
-export { DashboardProvider, useStoreContext };
+export { DashboardProvider, useInisteContext };

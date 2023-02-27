@@ -14,6 +14,7 @@ export function idbPromise(insite, method, object) {
       db.createObjectStore('users', { keyPath: '_id' });
       db.createObjectStore('sites', { keyPath: '_id' });
       db.createObjectStore('notes', { keyPath: '_id' });
+      db.createObjectStore('comments', { keyPath: '_id' });
     };
 
     request.onerror = function (e) {

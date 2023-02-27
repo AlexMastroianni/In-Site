@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const Note = require('./JobNotes');
+const User = require('./Users');
 
 const siteSchema = new Schema({
   name: String,
@@ -13,8 +14,18 @@ const siteSchema = new Schema({
     type: String,
     enum: ['Reno', 'Re-Build', 'Service'],
   },
-  users: [User.schema],
-  notes: [Note.schema],
+  users: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  notes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Note',
+    },
+  ],
 });
 
 const Site = model('Site', siteSchema);

@@ -22,12 +22,32 @@ export const ADD_USER = gql`
   }
 `;
 
-export const CREATE_NOTE = gql`
-  mutation createNOTE($author: String, $content: String) {
-    createPost(notes: { author: $author, content: $content }) {
+export const ADD_NOTE = gql`
+  mutation addNote($author: String, $content: String) {
+    addNote(notes: { author: $author, content: $content }) {
       id
       author
       content
+      createdAt
+      comments {
+        _id
+        content
+      }
+    }
+  }
+`;
+export const ADD_COMMENT = gql`
+  mutation addComment($noteId: ID!, $commentInput: String!) {
+    addComment(noteId: $noteId, commentInput: $commentInput) {
+      _id
+      content
+      author
+      createdAt
+      comments {
+        _id
+        commentText
+        createdAt
+      }
     }
   }
 `;

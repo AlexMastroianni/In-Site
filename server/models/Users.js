@@ -32,8 +32,19 @@ const userSchema = new Schema({
       'Plasterer',
     ],
   },
-  sites: [Site.schema],
-  notes: [Note.schema],
+  sites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Site',
+    },
+  ],
+
+  notes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Note',
+    },
+  ],
 });
 
 userSchema.pre('save', async function (next) {

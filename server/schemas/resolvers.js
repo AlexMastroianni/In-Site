@@ -1,31 +1,35 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Site, Post } = require('../models');
+const { User, Site, Note, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    user: async (parent, args, context) => {
-      console.log('context', context.user);
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'site.notes',
-          populate: 'site',
-        });
-        return user;
-      }
-      throw new AuthenticationError('Not logged in');
-    },
-
-    sites: async () => {
-      return await Site.find();
-    },
-    notes: async () => {
-      return await Note.find();
-    },
-
     users: async () => {
-      return await User.find();
+      return User.find().populate('sites');
     },
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('sites');
+    },
+    sites: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Site.find(params).sort({ createdAt: -1 });
+    },
+    site: async (parent, { siteID }) => {
+      return Site.findOne({ _id: siteID });
+    },
+    note: async (parent, { siteID }) => {
+      const params = siteID ? { siteID } : {};
+      return Site.find(params).sort({ createdAt: -1 });
+    },
+    notes: async (parent, { siteID }) => {
+      return Site.findOne({ _id: siteID });
+    },
+    // me: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return User.findOne({ _id: context.user._id }).populate('sites');
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
   },
 
   Mutation: {
@@ -53,25 +57,96 @@ const resolvers = {
       return { token, user };
     },
 
-    createPost: async (parent, args, context, info) => {
-      const { author, content } = args.post;
-      const post = await new Post({ author, content }).save();
-      return post;
+    addNote: async (parent, { noteInput }, context) => {
+      if (context.user) {
+        const note = await note.create({
+          noteInput,
+          author: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { notes: note.id } }
+        );
+
+        return note;
+      }
     },
-    updatePost: async (parent, args, context, info) => {
-      const { id } = args;
-      const { author, content } = args.post;
-      const post = await Post.findByIdAndUpdate(
-        id,
-        { author, content },
-        { new: true }
-      );
-      return post;
+    addComment: async (parent, { noteId, commentInput }, context) => {
+      if (context.user) {
+        return Note.findOneAndUpdate(
+          { _id: noteId },
+          {
+            $addToSet: {
+              comments: { commentInput, author: context.user.username },
+            },
+          },
+          {
+            new: true,
+          }
+        );
+      }
     },
-    deletePost: async (parent, args, context, info) => {
-      const { id } = args;
-      await Post.findByIdAndDelete(id);
-      return 'Deleted';
+    deleteNote: async (parent, { noteId }, context) => {
+      if (context.user) {
+        const note = await Note.findOneAndDelete({
+          _id: noteId,
+          author: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { notes: note._id } }
+        );
+
+        return note;
+      }
+    },
+    deleteComment: async (parent, { noteId, commentId }, context) => {
+      if (context.user) {
+        return Note.findOneAndUpdate(
+          { _id: noteId },
+          {
+            $pull: {
+              comments: {
+                _id: commentId,
+                author: context.user.username,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+    },
+    addSite: async (parent, { siteInput }, context) => {
+      if (context.user) {
+        const site = await site.create({
+          siteInput,
+          author: context.user.username,
+        });
+
+        await Site.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { site: site.id } }
+        );
+
+        return site;
+      }
+    },
+    deleteSite: async (parent, { siteId }, context) => {
+      if (context.user) {
+        return Site.findOneAndUpdate(
+          { _id: siteId },
+          {
+            $pull: {
+              sites: {
+                _id: siteId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
     },
   },
 };
