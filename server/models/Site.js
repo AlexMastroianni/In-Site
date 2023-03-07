@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
-const Note = require('./JobNotes');
-const User = require('./Users');
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const siteSchema = new Schema({
   name: String,
@@ -28,6 +28,6 @@ const siteSchema = new Schema({
   ],
 });
 
-const Site = model('Site', siteSchema);
+const Site = mongoose.model('Site', siteSchema);
 
 module.exports = Site;

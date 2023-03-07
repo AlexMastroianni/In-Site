@@ -6,53 +6,46 @@ const typeDefs = gql`
     username: String
     company: String
     trade: String
+    sites: [Site]
   }
 
   type Site {
     _id: ID
     name: String
-    lat: Int
-    long: Int
+    lat: Float
+    long: Float
     classifcation: String
     category: String
+    users: [User]
   }
   type Note {
     _id: ID
     author: User
     content: String
-    comments: Comment
+    comments: [Comment]
     createdAt: String
   }
   type Comment {
     _id: ID
     content: String
-    author: String
+    author: User
     createdAt: String
   }
 
-  type Query {
-    users: [User]
-    sites: [Site]
-    notes: [Note]
-    comments: [Comment]
-    site(_id: ID!): [Site]
-    note(username: String): [Note]
-    user(username: String): [User]
-  }
   type Auth {
     token: ID
     user: User
   }
-  input noteInput {
+  input NoteInput {
     author: String
     content: String
   }
-  input commentInput {
+  input CommentInput {
     author: String
     content: String
   }
 
-  input siteInput {
+  input SiteInput {
     name: String
     lat: Int
     long: Int
@@ -60,22 +53,29 @@ const typeDefs = gql`
     category: String
   }
 
+    type Query {
+    users: [User]
+    sites: [Site]
+    notes: [Note]
+    user: User
+    comments: [Comment]
+    userID:(ID:ID!): User
+    site:(ID:ID!): Site
+    comment:(ID:ID!): Comment
+  }
+
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    updateUser(username: String!, email: String!, password: String!): User
+    addUser(username: String!, email: String!, password: String!): Auth!
     login(email: String!, password: String!): Auth
 
-    addNote(note: noteInput): Note
-    updateNote(id: String, note: noteInput): Note
-    deleteNote(id: String): String
+    addNote(noteInput:NoteInput): Note!
+    deleteNote(ID:ID!):Boolean
+    editNote(ID:ID, noteInput:NoteInput): Boolean
 
-    addComment(note: commentInput): Note
-    updateComment(id: String, comment: commentInput): Note
-    deleteComment(id: String): String
 
-    addSite(note: siteInput): Site
-    updateSite(id: String, note: siteInput): Site
-    deleteSite(id: String): String
+    addComment(commentInput:CommentInput): Comment!
+    deleteComment(ID:ID!):Boolean
+
   }
 `;
 

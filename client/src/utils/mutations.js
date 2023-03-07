@@ -25,14 +25,10 @@ export const ADD_USER = gql`
 export const ADD_NOTE = gql`
   mutation addNote($author: String, $content: String) {
     addNote(notes: { author: $author, content: $content }) {
-      id
-      author
+      _id
+
       content
       createdAt
-      comments {
-        _id
-        content
-      }
     }
   }
 `;

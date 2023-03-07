@@ -7,11 +7,11 @@ import { DELETE_POST } from '../../utils/mutations';
 
 function Sites() {
   const { loading: isUserLoading, data: users } = useQuery(QUERY_ALL_USERS);
-  const { loading: isSiteLoading, data: posts } = useQuery(GET_NOTES);
+  const { loading: isSiteLoading, data: notes } = useQuery(GET_NOTES);
   const [deletePost, { errr }] = useMutation(DELETE_POST);
 
   const usersData = users?.users || [];
-  const postsData = posts?.getALL || [];
+  const postsData = notes?.notes || [];
 
   const removePost = (id) => {
     deletePost({

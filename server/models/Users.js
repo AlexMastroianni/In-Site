@@ -1,25 +1,25 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const Site = require('./Site');
+
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
   email: {
     type: String,
     required: true,
     unique: true,
+    trim: true,
   },
   password: {
     type: String,
     required: true,
-    minlength: 5,
   },
   username: {
     type: String,
     trim: true,
   },
-  company: {
-    type: String,
-  },
+  company: String,
+
   trade: {
     type: String,
     enum: [
@@ -61,6 +61,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-const User = model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

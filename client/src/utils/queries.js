@@ -4,8 +4,6 @@ export const QUERY_SITES = gql`
   query sites {
     sites {
       _id
-      lat
-      long
       classifcation
       category
       name
@@ -15,7 +13,7 @@ export const QUERY_SITES = gql`
 
 export const QUERY_ALL_USERS = gql`
   query users {
-    user {
+    users {
       username
       company
       trade
@@ -24,24 +22,10 @@ export const QUERY_ALL_USERS = gql`
 `;
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query user {
+    users {
       _id
       username
-      email
-      sites {
-        _id
-        name
-        lat
-        long
-        classifcation
-        category
-      }
-      notes {
-        _id
-        content
-        author
-      }
     }
   }
 `;
@@ -49,7 +33,7 @@ export const QUERY_USER = gql`
 export const GET_NOTES = gql`
   query notes {
     notes {
-      id
+      _id
       author
       content
     }

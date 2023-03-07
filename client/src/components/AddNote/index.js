@@ -1,13 +1,14 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_NOTE } from '../../utils/mutations';
+import { ADD_NOTE } from '../../utils/mutations';
 import { useState } from 'react';
 
 function AddNote() {
-  const [createNote, { err }] = useMutation(CREATE_NOTE);
+  const [createNote, { err }] = useMutation(ADD_NOTE);
   const [content, setContent] = useState(null);
 
-  const addNote = () => {
+  const addNote = (e) => {
+    console.log(e.target.value);
     createNote({
       variables: {
         content: content,

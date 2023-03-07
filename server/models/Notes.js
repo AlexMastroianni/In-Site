@@ -1,7 +1,8 @@
-const { Schema, model } = require('mongoose');
-const Comments = require('./Comments');
+const mongoose = require('mongoose');
 
-const noteSchema = new Schema({
+const { Schema } = mongoose;
+
+const notesSchema = new Schema({
   author: String,
   content: String,
   createdAt: {
@@ -9,7 +10,6 @@ const noteSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  // comments: [Comments.Schema],
   comment: [
     {
       type: Schema.Types.ObjectId,
@@ -18,6 +18,6 @@ const noteSchema = new Schema({
   ],
 });
 
-const Note = model('note', noteSchema);
+const Note = mongoose.model('Note', notesSchema);
 
 module.exports = Note;

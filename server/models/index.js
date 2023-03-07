@@ -1,5 +1,5 @@
 const User = require('./Users');
-const Note = require('./JobNotes');
+const Note = require('./Notes');
 const Site = require('./Site');
 const Comment = require('./Comments');
 

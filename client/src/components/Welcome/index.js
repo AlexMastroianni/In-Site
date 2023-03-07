@@ -1,30 +1,30 @@
 import React from 'react';
-
 import { useQuery } from '@apollo/client';
-import { QUERY_ALL_SITES, QUERY_USER } from '../../utils/queries';
+import { QUERY_SITES, QUERY_USER } from '../../utils/queries';
 import BarChart from '../BarChart';
 
 function Welcome() {
-  // eslint-disable-next-line no-unused-vars
-  const { loading, data } = useQuery(QUERY_USER, QUERY_ALL_SITES);
+  const { loading: isUserLoading, data: user } = useQuery(QUERY_USER);
+  const { loading: isSiteLoading, data: sites } = useQuery(QUERY_SITES);
 
-  const user = data?.user || [];
-  const sites = data?.sites || [];
-  console.log(data?.sites);
+  const userData = user?.users || [];
+  const siteData = sites?.sites || [];
+  console.log(siteData, 'site');
+  console.log(userData, 'user');
 
   return (
     <div>
       <div class="tile is-parent">
         <article class="tile is-child box">
           {user ? (
-            <p class="title">Welcome {user.username} </p>
+            <p class="title">Welcome {userData.username} </p>
           ) : (
             <p class="title">Welcome</p>
           )}
           <br></br>
 
           {sites ? (
-            <p class="subtitle">You have {sites.length} sites active</p>
+            <p class="subtitle">You have {siteData.length} sites active</p>
           ) : (
             <p class="subtitle">You have abit to work on</p>
           )}
@@ -44,8 +44,8 @@ function Welcome() {
             <p class="subtitle">Map lists of sites here</p>
             <div class="content">
               <ul>
-                {sites.map((sites) => (
-                  <li key={sites.id}>{sites.name}</li>
+                {siteData.map((siteData) => (
+                  <li key={siteData.id}>{siteData.name}</li>
                 ))}
               </ul>
             </div>

@@ -10,9 +10,9 @@ db.once('open', async () => {
   await Site.deleteMany({});
   await Note.deleteMany({});
 
+  await Note.insertMany(noteData);
   await User.insertMany(userData);
   await Site.insertMany(siteData);
-  await Note.insertMany(noteData);
 
   console.log('Database Has been Seeded');
   process.exit(0);
