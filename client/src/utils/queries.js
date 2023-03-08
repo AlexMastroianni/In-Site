@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 
 export const QUERY_SITES = gql`
   query sites {
@@ -23,9 +23,11 @@ export const QUERY_ALL_USERS = gql`
 
 export const QUERY_USER = gql`
   query user {
-    users {
+    user {
       _id
       username
+      company
+      trade
     }
   }
 `;
@@ -34,7 +36,7 @@ export const GET_NOTES = gql`
   query notes {
     notes {
       _id
-      author
+
       content
     }
   }

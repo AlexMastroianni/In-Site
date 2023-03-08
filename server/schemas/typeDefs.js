@@ -53,29 +53,29 @@ const typeDefs = gql`
     category: String
   }
 
-    type Query {
+  type Query {
     users: [User]
     sites: [Site]
     notes: [Note]
     user: User
     comments: [Comment]
-    userID:(ID:ID!): User
-    site:(ID:ID!): Site
-    comment:(ID:ID!): Comment
+    site(ID: ID!): Site!
+    comment(ID: ID!): Comment!
+    note(ID: ID!): Comment!
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth!
     login(email: String!, password: String!): Auth
 
-    addNote(noteInput:NoteInput): Note!
-    deleteNote(ID:ID!):Boolean
-    editNote(ID:ID, noteInput:NoteInput): Boolean
+    addNote(noteInput: NoteInput): Note!
+    addComment(commentInput: CommentInput): Comment!
 
+    deleteNote(ID: ID!): Boolean
+    deleteComment(ID: ID!): Boolean
 
-    addComment(commentInput:CommentInput): Comment!
-    deleteComment(ID:ID!):Boolean
-
+    editNote(ID: ID, noteInput: NoteInput): Boolean
+    editComment(ID: ID, commentInput: CommentInput): Boolean
   }
 `;
 

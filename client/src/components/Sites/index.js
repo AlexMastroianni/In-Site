@@ -3,15 +3,18 @@ import DoughnutChart from '../DoughnutChart';
 import AddNote from '../AddNote';
 import { QUERY_ALL_USERS, GET_NOTES } from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
-import { DELETE_POST } from '../../utils/mutations';
+import { DELETE_NOTE } from '../../utils/mutations';
 
 function Sites() {
   const { loading: isUserLoading, data: users } = useQuery(QUERY_ALL_USERS);
   const { loading: isSiteLoading, data: notes } = useQuery(GET_NOTES);
-  const [deletePost, { errr }] = useMutation(DELETE_POST);
+  const [deletePost, { errr }] = useMutation(DELETE_NOTE);
 
   const usersData = users?.users || [];
-  const postsData = notes?.notes || [];
+  console.log(usersData, 'User Data');
+  const notesData = notes?.notes || [];
+
+  console.log(notesData, 'Notes Data');
 
   const removePost = (id) => {
     deletePost({
@@ -36,7 +39,7 @@ function Sites() {
               </p>
             </div>
             <p class="subtitle">
-              <b>{postsData.length} Jobs to complete</b>, Bit on
+              <b>{notesData.length} Jobs to complete</b>, Bit on
             </p>
           </article>
         </div>
@@ -67,12 +70,12 @@ function Sites() {
             <p class="subtitle">Here is what happening</p>
             <div class="content">
               <ul>
-                {postsData.map((postsData) => (
-                  <li key={postsData._id}>
-                    {postsData.content} -{' '}
+                {notesData.map((notesData) => (
+                  <li key={notesData._id}>
+                    {notesData.content} -{' '}
                     <button
                       className="button is-danger"
-                      onClick={() => removePost(postsData.id)}
+                      onClick={() => removePost(notesData.id)}
                     >
                       {' '}
                       Delete it{' '}

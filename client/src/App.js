@@ -17,6 +17,7 @@ import { DashboardProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import Sites from './pages/Sites';
+import UserProvider from './utils/UserContex';
 
 const httpLink = createHttpLink({
   uri: '/graphql',

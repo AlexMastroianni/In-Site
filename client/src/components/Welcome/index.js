@@ -7,7 +7,7 @@ function Welcome() {
   const { loading: isUserLoading, data: user } = useQuery(QUERY_USER);
   const { loading: isSiteLoading, data: sites } = useQuery(QUERY_SITES);
 
-  const userData = user?.users || [];
+  const userData = user?.user || [];
   const siteData = sites?.sites || [];
   console.log(siteData, 'site');
   console.log(userData, 'user');

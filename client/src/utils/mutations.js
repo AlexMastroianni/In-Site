@@ -23,12 +23,9 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_NOTE = gql`
-  mutation addNote($author: String, $content: String) {
-    addNote(notes: { author: $author, content: $content }) {
-      _id
-
+  mutation addNote($content: String) {
+    addNote(notes: { content: $content }) {
       content
-      createdAt
     }
   }
 `;
@@ -48,8 +45,8 @@ export const ADD_COMMENT = gql`
   }
 `;
 
-export const DELETE_POST = gql`
-  mutation deletePost($id: String) {
-    deletePost(id: $id)
+export const DELETE_NOTE = gql`
+  mutation deleteNote($id: String) {
+    deleteNote(id: $id)
   }
 `;
