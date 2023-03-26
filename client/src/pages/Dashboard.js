@@ -1,11 +1,11 @@
 import React from 'react';
-import Welcome from '../components/Welcome';
+import UserDashborder from '../components/DashBoard/userDashboard';
 
-function Dashboard(props) {
+function Dashboard({ token }) {
   return (
-    <container className="dashboard">
-      <Welcome />
-    </container>
+    <div className="dashboard">
+      <UserDashborder token={token} />
+    </div>
   );
 }
 

@@ -1,48 +1,56 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
-import { LOGIN } from '../utils/mutations';
-import Auth from '../utils/auth';
-import Logo from '../assets/in-site.png';
+import { Link, useNavigate } from 'react-router-dom';
+import { supabase } from '../helper/superBase';
 
-function Login(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error }] = useMutation(LOGIN);
+const Login = ({ setToken }) => {
+  let navigate = useNavigate();
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const mutationResponse = await login({
-        variables: { email: formState.email, password: formState.password },
-      });
-      const token = await mutationResponse.data.login.token;
-      Auth.login(token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
-  const handleChange = (event) => {
+  console.log(formData);
+
+  function handleChange(event) {
     const { name, value } = event.target;
-    setFormState({
-      ...formState,
+    setFormData({
+      ...formData,
       [name]: value,
     });
-  };
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      console.log(data);
+      navigate('/');
+      setToken(data);
+      //   alert('Check your email for verification link')
+    } catch (error) {
+      alert(error);
+    }
+  }
 
   return (
-    <main className="login-page">
-      <div class="columns">
-        <div class="column"></div>
-        <div class="column">
-          <div class="tile is-ancestor is-flex">
-            <div class="tile is-parent pt-5 mt-5">
-              <article class="tile is-child box is-justify-content-center">
-                <p class="title">Login</p>
-                <p class="subtitle">If you have an account</p>
+    <div className="login-page">
+      <div className="columns">
+        <div className="column"></div>
+        <div className="column">
+          <div className="tile is-ancestor is-flex">
+            <div className="tile is-parent pt-5 mt-5">
+              <article className="tile is-child box is-justify-content-center">
+                <p className="title">Login</p>
+                <p className="subtitle">Login to your account</p>
 
-                <div class="content">
-                  <form onSubmit={handleFormSubmit}>
+                <div className="content">
+                  <form onSubmit={handleSubmit}>
                     <div className="field">
                       <label htmlFor="email">Email:</label>
                       <input
@@ -63,13 +71,7 @@ function Login(props) {
                         onChange={handleChange}
                       />
                     </div>
-                    {error ? (
-                      <div>
-                        <p className="error-text">
-                          The provided credentials are incorrect
-                        </p>
-                      </div>
-                    ) : null}
+
                     <div className="control">
                       <button className="button is-link" type="submit">
                         Submit
@@ -82,14 +84,10 @@ function Login(props) {
             </div>
           </div>
         </div>
-        <div class="column"></div>
+        <div className="column"></div>
       </div>
-    </main>
+    </div>
   );
-}
+};
 
 export default Login;
-
-<article className=" tile is-child box login-content">
-  <h2 className="title">Login</h2>
-</article>;

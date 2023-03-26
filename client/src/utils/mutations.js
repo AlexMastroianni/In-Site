@@ -46,7 +46,7 @@ export const ADD_COMMENT = gql`
 `;
 
 export const DELETE_NOTE = gql`
-  mutation deleteNote($id: String) {
-    deleteNote(id: $id)
+  mutation deleteNote($id: ID!) {
+    deleteNote(ID: $id)
   }
 `;

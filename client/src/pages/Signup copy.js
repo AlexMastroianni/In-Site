@@ -1,58 +1,47 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
-import { supabase } from '../helper/superBase';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
+import { ADD_USER } from '../utils/mutations';
 
 function Signup(props) {
-  let navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [addUser] = useMutation(ADD_USER);
 
-  console.log(formData);
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const mutationResponse = await addUser({
+      variables: {
+        email: formState.email,
+        password: formState.password,
+        username: formState.username,
+      },
+    });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
+    console.log(formState.email, formState.password);
+  };
 
-  function handleChange(event) {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
+    setFormState({
+      ...formState,
       [name]: value,
     });
-  }
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-        options: {
-          data: {
-            username: formData.username,
-          },
-        },
-      });
-      navigate('/');
-      if (error) throw error;
-      alert('Check your email for verification link');
-    } catch (error) {
-      alert(error);
-    }
-  }
+  };
 
   return (
     <div className="login-page">
-      <div className="columns">
-        <div className="column"></div>
-        <div className="column">
-          <div className="tile is-ancestor is-flex">
-            <div className="tile is-parent pt-5 mt-5">
-              <article className="tile is-child box is-justify-content-center">
-                <p className="title">Sign Up</p>
-                <p className="subtitle">Create a new account</p>
-                <div className="content">
-                  <form onSubmit={handleSubmit}>
+      <div class="columns">
+        <div class="column"></div>
+        <div class="column">
+          <div class="tile is-ancestor is-flex">
+            <div class="tile is-parent pt-5 mt-5">
+              <article class="tile is-child box is-justify-content-center">
+                <p class="title">Sign Up</p>
+                <p class="subtitle">Create a new account</p>
+                <div class="content">
+                  <form onSubmit={handleFormSubmit}>
                     <div className="field">
                       <label htmlFor="username">User Name</label>
                       <input
@@ -96,7 +85,7 @@ function Signup(props) {
             </div>
           </div>
         </div>
-        <div className="column"></div>
+        <div class="column"></div>
       </div>
     </div>
   );

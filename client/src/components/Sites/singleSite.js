@@ -1,45 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import DoughnutChart from '../DoughnutChart';
+import { useParams } from 'react-router-dom';
 import AddNote from '../AddNote';
-import { QUERY_ALL_USERS, GET_NOTES } from '../../utils/queries';
-import { useMutation, useQuery } from '@apollo/client';
-import { DELETE_NOTE } from '../../utils/mutations';
+import { supabase } from '../../helper/superBase';
 
-function Sites() {
-  const { loading: isUserLoading, data: users } = useQuery(QUERY_ALL_USERS);
-  const { loading: isSiteLoading, data: notes } = useQuery(GET_NOTES);
-  const [deletePost, { errr }] = useMutation(DELETE_NOTE);
+function SinlgeSite() {
+  const [site, setSite] = useState([]);
+  const [post, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
 
-  const usersData = users?.users || [];
-  console.log(usersData, 'User Data');
-  const notesData = notes?.notes || [];
+  const { id } = useParams();
+  console.log(id, 'useParams');
 
-  console.log(notesData, 'Notes Data');
+  async function fetchSites() {
+    const { data: site, error } = await supabase
+      .from('profiles')
+      .select('*, site(*)')
 
-  const removePost = (id) => {
-    deletePost({
-      variables: {
-        id: id,
-      },
-    });
-  };
+      .eq('site.id', `${id}`);
+    setSite(site[0].site[0]);
+  }
+
+  async function fetchPosts() {
+    const { data: site, error } = await supabase
+      .from('postes')
+      .select('*, site(*)')
+
+      .eq('site.id', `${id}`);
+    setPosts(site);
+  }
+
+  useEffect(() => {
+    fetchSites();
+    fetchPosts();
+  }, []);
+
+  console.log(site, 'site data from single site');
+  console.log(post, 'posts');
 
   return (
     <div className="sites">
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child box">
-            <p class="title">Sites</p>
-            <div class="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                ornare magna eros, eu pellentesque tortor vestibulum ut.
-                Maecenas non massa sem. Etiam finibus odio quis feugiat
-                facilisis.
-              </p>
-            </div>
+            <p class="title">{site.name}</p>
+            <div class="content"></div>
             <p class="subtitle">
-              <b>{notesData.length} Jobs to complete</b>, Bit on
+              {/* <b>{notesData.length} Jobs to complete</b>, Bit on */}
             </p>
           </article>
         </div>
@@ -51,11 +58,11 @@ function Sites() {
             <div class="content">
               <div class="content">
                 <ul>
-                  {usersData.map((usersData) => (
+                  {/* {usersData.map((usersData) => (
                     <li key={usersData.username}>
                       <b>{usersData.username}</b>: {usersData.trade}
                     </li>
-                  ))}
+                  ))} */}
                 </ul>
               </div>
             </div>
@@ -70,18 +77,12 @@ function Sites() {
             <p class="subtitle">Here is what happening</p>
             <div class="content">
               <ul>
-                {notesData.map((notesData) => (
+                {/* {notesData.map((notesData) => (
                   <li key={notesData._id}>
                     {notesData.content} -{' '}
-                    <button
-                      className="button is-danger"
-                      onClick={() => removePost(notesData.id)}
-                    >
-                      {' '}
-                      Delete it{' '}
-                    </button>
+                    <button className="button is-danger"> Delete it </button>
                   </li>
-                ))}
+                ))} */}
               </ul>
             </div>
           </article>
@@ -102,4 +103,4 @@ function Sites() {
   );
 }
 
-export default Sites;
+export default SinlgeSite;

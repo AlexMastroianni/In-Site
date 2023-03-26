@@ -1,13 +1,13 @@
 import React from 'react';
-import Sites from '../components/Sites';
+import AllSites from '../components/Sites/allSites';
 import SideBar from '../components/SideBar';
 
-function Site(props) {
+function Site({ token }) {
   return (
     <>
       <SideBar />
       <div className="HomeContainer">
-        <Sites />
+        <AllSites token={token} />
       </div>
     </>
   );

@@ -220,6 +220,12 @@ input:focus {
   .card {
     width: 100%;
   }
+  .dashboard {
+    padding-left: 10px;
+  }
+  .sites {
+    padding-left: 10px;
+  }
 }
 
 .dashboard {
@@ -230,12 +236,8 @@ input:focus {
 }
 
 .sidebar {
-  height: 100vh;
+  height: 100vmin;
   position: fixed;
-}
-
-.HomeContainer {
-  display: flex;
 }
 
 .login-page {

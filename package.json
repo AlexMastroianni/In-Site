@@ -20,9 +20,13 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.12.1",
     "apollo-server-express": "^3.0.0-rc.1",
     "babel": "^6.23.0",
     "chart.js": "^4.1.2",
+    "dotenv": "^16.0.3",
+    "install": "^0.13.0",
+    "npm": "^9.6.2",
     "react-chartjs-2": "^5.2.0",
     "react-simple-typewriter": "^5.0.1"
   }

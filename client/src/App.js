@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -9,15 +9,14 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
-import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import { DashboardProvider } from './utils/GlobalState';
-import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
 import Sites from './pages/Sites';
-import UserProvider from './utils/UserContex';
+import * as dotenv from 'dotenv';
+import SinlgeSite from './components/Sites/singleSite';
+
+dotenv.config();
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -38,27 +37,37 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+const App = () => {
+  const [token, setToken] = useState(false);
+
+  if (token) {
+    sessionStorage.setItem('token', JSON.stringify(token));
+  }
+
+  useEffect(() => {
+    if (sessionStorage.getItem('token')) {
+      let data = JSON.parse(sessionStorage.getItem('token'));
+      setToken(data);
+    }
+  }, []);
+
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <DashboardProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/success" element={<Success />} />
-              <Route path="/orderHistory" element={<OrderHistory />} />
-              <Route path="/products/:id" element={<Detail />} />
-              <Route path="*" element={<NoMatch />} />
-              <Route path="/sites" element={<Sites />} />
-            </Routes>
-          </DashboardProvider>
+          <Routes>
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login setToken={setToken} />} />
+
+            {token ? <Route path={'/'} element={<Home token={token} />} /> : ''}
+            <Route path="*" element={<NoMatch />} />
+            <Route path="/sites" element={<Sites token={token} />} />
+            <Route path="/sites/:id" element={<SinlgeSite />} />
+          </Routes>
         </div>
       </Router>
     </ApolloProvider>
   );
-}
+};
 
 export default App;

@@ -1,8 +1,9 @@
 import React from 'react';
 import Jumbotron from '../components/Jumbotron';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NoMatch = () => {
+  let navigate = useNavigate();
   return (
     <div>
       <Jumbotron>
@@ -14,10 +15,8 @@ const NoMatch = () => {
           </p>
           <p class="lead">The page you’re looking for doesn’t exist.</p>
           <p>
-            <Link to="/">
-              {' '}
-              <span>Go Home</span>
-            </Link>
+            {' '}
+            <button onClick={() => navigate(-1)}>Go Back</button>
           </p>
         </div>
       </Jumbotron>

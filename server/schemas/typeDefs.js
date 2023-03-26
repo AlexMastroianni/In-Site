@@ -59,8 +59,8 @@ const typeDefs = gql`
     notes: [Note]
     user: User
     comments: [Comment]
-    site(ID: ID!): Site!
-    comment(ID: ID!): Comment!
+    site(_id: ID!): Site!
+    comment(_id: ID!): Comment!
     note(ID: ID!): Comment!
   }
 
