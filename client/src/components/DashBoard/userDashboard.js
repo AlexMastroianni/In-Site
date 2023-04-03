@@ -24,10 +24,22 @@ function UserDashborder({ token }) {
 
   useEffect(() => {
     fetchSites();
+    console.log('data site fetched');
   }, []);
 
-  console.log('unfiltered site data', site);
-  console.log('filtered site data', site);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  function openModal() {
+    setModalVisible(true);
+  }
+
+  function closeModal() {
+    setModalVisible(false);
+    fetchSites();
+  }
+
+  // console.log('unfiltered site data', site);
+  // console.log('filtered site data', site);
 
   return (
     <div>
@@ -64,9 +76,16 @@ function UserDashborder({ token }) {
                 ))}
               </ul>
             </div>
-            <span className="button">add a site</span>
+            <span className="button" onClick={openModal}>
+              add a site
+            </span>
           </article>
-          <AddSiteModal />
+          <AddSiteModal
+            openModal={openModal}
+            closeModal={closeModal}
+            modalVisible={modalVisible}
+            token={token}
+          />
         </div>
 
         <div class="tile is-parent">

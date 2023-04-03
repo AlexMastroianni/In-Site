@@ -46,7 +46,7 @@ function SinlgeSite() {
             <p class="title">{site.name}</p>
             <div class="content"></div>
             <p class="subtitle">
-              {/* <b>{notesData.length} Jobs to complete</b>, Bit on */}
+              <button className="button">Delete Site</button>
             </p>
           </article>
         </div>
