@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BarChart from '../BarChart';
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
+
 import AddSiteModal from '../AddSiteModal/addSiteModal';
 import { supabase } from '../../helper/superBase';
 
@@ -38,13 +37,15 @@ function UserDashborder({ token }) {
     fetchSites();
   }
 
-  // console.log('unfiltered site data', site);
-  // console.log('filtered site data', site);
-
   return (
     <div>
-      <div class="tile is-parent">
-        <article class="tile is-child box pt-5 mt-5">
+      <div class="tile is-parent box searchBar">
+        <div className="tile is-child ">
+          <p>Testing</p>
+        </div>
+      </div>
+      <div class="tile is-parent box">
+        <article class="tile is-child ">
           {token ? (
             <p class="title">Welcome {token.user.user_metadata.username} </p>
           ) : (
@@ -66,7 +67,9 @@ function UserDashborder({ token }) {
         <div class="tile is-parent">
           <article class="tile is-child box">
             <p class="title">Active Sites</p>
-
+            <button className="button" onClick={openModal}>
+              <i class="fa fa-add" />
+            </button>
             <div class="content">
               <ul>
                 {site.map((siteData) => (
@@ -76,9 +79,6 @@ function UserDashborder({ token }) {
                 ))}
               </ul>
             </div>
-            <span className="button" onClick={openModal}>
-              add a site
-            </span>
           </article>
           <AddSiteModal
             openModal={openModal}
@@ -91,7 +91,6 @@ function UserDashborder({ token }) {
         <div class="tile is-parent">
           <article class="tile is-child box">
             <p class="title">Workload</p>
-
             <div class="content">
               <BarChart />
             </div>

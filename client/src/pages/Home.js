@@ -36,10 +36,8 @@ const Home = ({ token }) => {
   if (token) {
     return (
       <>
-        <div className="HomeContainer">
-          <SideBar />
-          <Dashboard token={token} />
-        </div>
+        <SideBar />
+        <Dashboard token={token} />
       </>
     );
   } else {

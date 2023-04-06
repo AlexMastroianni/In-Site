@@ -16,7 +16,9 @@ const NoMatch = () => {
           <p class="lead">The page you’re looking for doesn’t exist.</p>
           <p>
             {' '}
-            <button onClick={() => navigate(-1)}>Go Back</button>
+            <button className="button" onClick={() => navigate(-1)}>
+              Go Back
+            </button>
           </p>
         </div>
       </Jumbotron>

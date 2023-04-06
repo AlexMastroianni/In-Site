@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../../helper/superBase';
+import AddSiteModal from '../AddSiteModal/addSiteModal';
 
 function AllSites({ token }) {
   const [site, setSite] = useState([]);
@@ -19,6 +20,17 @@ function AllSites({ token }) {
     fetchSites();
   }, []);
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  function openModal() {
+    setModalVisible(true);
+  }
+
+  function closeModal() {
+    setModalVisible(false);
+    fetchSites();
+  }
+
   console.log('unfiltered site data', site);
   console.log('filtered site data', site);
   return (
@@ -27,6 +39,9 @@ function AllSites({ token }) {
         <div class="tile is-parent">
           <article class="tile is-child box">
             <p class="title">Sites</p>
+            <button className="button" onClick={openModal}>
+              <i class="fa fa-add" />
+            </button>
             <div class="content"></div>
             <p class="subtitle">
               {site.map((siteData) => (
@@ -36,6 +51,12 @@ function AllSites({ token }) {
               ))}
             </p>
           </article>
+          <AddSiteModal
+            openModal={openModal}
+            closeModal={closeModal}
+            modalVisible={modalVisible}
+            token={token}
+          />
         </div>
       </div>
     </div>

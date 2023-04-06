@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DoughnutChart from '../DoughnutChart';
-import { useParams } from 'react-router-dom';
-import AddNote from '../AddNote';
+import { Link, useParams } from 'react-router-dom';
+// import AddNote from '../AddNote';
 import { supabase } from '../../helper/superBase';
 
 function SinlgeSite() {
@@ -10,43 +10,45 @@ function SinlgeSite() {
   const [comments, setComments] = useState([]);
 
   const { id } = useParams();
-  console.log(id, 'useParams');
 
   async function fetchSites() {
     const { data: site, error } = await supabase
       .from('profiles')
       .select('*, site(*)')
-
       .eq('site.id', `${id}`);
     setSite(site[0].site[0]);
   }
 
-  async function fetchPosts() {
-    const { data: site, error } = await supabase
-      .from('postes')
-      .select('*, site(*)')
-
-      .eq('site.id', `${id}`);
-    setPosts(site);
-  }
+  // async function fetchPosts() {
+  //   const { data: site, error } = await supabase
+  //     .from('postes')
+  //     .select('*, site(*)')
+  //     .eq('site.id', `${id}`);
+  //   setPosts(site);
+  // }
 
   useEffect(() => {
     fetchSites();
-    fetchPosts();
+    // fetchPosts();
   }, []);
 
-  console.log(site, 'site data from single site');
-  console.log(post, 'posts');
+  async function handleRemove() {
+    const { error } = await supabase.from('site').delete('').eq('id', `${id}`);
+  }
 
   return (
-    <div className="sites">
+    <div className="singleSite">
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child box">
             <p class="title">{site.name}</p>
             <div class="content"></div>
             <p class="subtitle">
-              <button className="button">Delete Site</button>
+              <Link reloadDocument to={'/sites'}>
+                <button className="button" onClick={handleRemove}>
+                  Delete Site
+                </button>
+              </Link>
             </p>
           </article>
         </div>
@@ -95,9 +97,7 @@ function SinlgeSite() {
             </div>
           </article>
         </div>
-        <div>
-          <AddNote />
-        </div>
+        <div>{/* <AddNote /> */}</div>
       </div>
     </div>
   );

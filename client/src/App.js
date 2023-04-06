@@ -54,17 +54,14 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login setToken={setToken} />} />
-
-            {token ? <Route path={'/'} element={<Home token={token} />} /> : ''}
-            <Route path="*" element={<NoMatch />} />
-            <Route path="/sites" element={<Sites token={token} />} />
-            <Route path="/sites/:id" element={<SinlgeSite />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
+          {token ? <Route path={'/'} element={<Home token={token} />} /> : ''}
+          <Route path="*" element={<NoMatch />} />
+          <Route path="/sites" element={<Sites token={token} />} />
+          <Route path="/sites/:id" element={<SinlgeSite />} />
+        </Routes>
       </Router>
     </ApolloProvider>
   );

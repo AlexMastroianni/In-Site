@@ -38,22 +38,24 @@ function AddSiteModal({ openModal, closeModal, modalVisible, token }) {
     } catch (error) {
       alert(error);
     }
+    closeModal();
   }
 
   return (
     <Modal
       isOpen={modalVisible}
       onRequestClose={closeModal}
-      contentLabel="Example Modal"
+      contentLabel="Modal"
+      style={modal}
     >
       <h2 className="modal-">Hello</h2>
 
-      <div className="modal-">I am a modal</div>
+      <div className="modal-">Please Add a site!</div>
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="name">Site Name</label>
           <input
-            placeholder="Site id eg ST2013, or Adress eg 123 Smith Street"
+            placeholder="ID or adress"
             name="name"
             type="name"
             id="name"
@@ -64,7 +66,7 @@ function AddSiteModal({ openModal, closeModal, modalVisible, token }) {
         <div className="field">
           <label htmlFor="Scale">Scale</label>
           <input
-            placeholder="Small, Medium, Large"
+            placeholder="Sm, Md, Lrg"
             name="Scale"
             type="Scale"
             id="Scale"
@@ -93,5 +95,16 @@ function AddSiteModal({ openModal, closeModal, modalVisible, token }) {
     </Modal>
   );
 }
+
+const modal = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 export default AddSiteModal;
