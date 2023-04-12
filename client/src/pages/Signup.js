@@ -46,10 +46,10 @@ function Signup(props) {
       <div className="columns">
         <div className="column"></div>
         <div className="column">
-          <div className="tile is-ancestor is-flex">
+          <div className="tile is-ancestor signupContainer">
             <div className="tile is-parent pt-5 mt-5">
-              <article className="tile is-child box is-justify-content-center">
-                <p className="title">Sign Up</p>
+              <article className="tile is-child box">
+                <p className="title">Sign up</p>
                 <p className="subtitle">Create a new account</p>
                 <div className="content">
                   <form onSubmit={handleSubmit}>
@@ -63,7 +63,6 @@ function Signup(props) {
                         onChange={handleChange}
                       />
                     </div>
-
                     <div className="field">
                       <label htmlFor="email">Email</label>
                       <input

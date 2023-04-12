@@ -1,16 +1,16 @@
 import React from 'react';
-import AllSites from '../components/Sites/allSites';
+import SingleSite from '../components/Sites/singleSite';
 import SideBar from '../components/SideBar';
 
-function Site({ token }) {
+function SingleSitePage({ token }) {
   return (
     <>
       <SideBar />
       <div className="siteContainer">
-        <AllSites token={token} />
+        <SingleSite token={token} />
       </div>
     </>
   );
 }
 
-export default Site;
+export default SingleSitePage;

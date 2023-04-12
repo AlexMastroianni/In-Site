@@ -37,7 +37,7 @@ function SinlgeSite() {
   }
 
   return (
-    <div className="singleSite">
+    <div className="singleSiteContainer">
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child box">
@@ -71,34 +71,20 @@ function SinlgeSite() {
           </article>
         </div>
       </div>
-      <div>
+      <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child box">
-            <p class="title">On the Agenda</p>
-            <br></br>
-            <p class="subtitle">Here is what happening</p>
-            <div class="content">
-              <ul>
-                {/* {notesData.map((notesData) => (
-                  <li key={notesData._id}>
-                    {notesData.content} -{' '}
-                    <button className="button is-danger"> Delete it </button>
-                  </li>
-                ))} */}
-              </ul>
-            </div>
-          </article>
-          <article class="tile is-child box">
-            <p class="title">Where You are At</p>
-            <br></br>
-            <p class="subtitle">Here is what happening</p>
-            <div class="content">
-              <DoughnutChart />
-            </div>
+            <p class="title">The List</p>
+            <div class="content"></div>
+            <p class="subtitle">
+              {' '}
+              <p class="subtitle">Here is what happening</p>
+            </p>
           </article>
         </div>
-        <div>{/* <AddNote /> */}</div>
       </div>
+      <div></div>
+      <div>{/* <AddNote /> */}</div>
     </div>
   );
 }

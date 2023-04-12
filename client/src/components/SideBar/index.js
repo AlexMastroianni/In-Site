@@ -16,7 +16,7 @@ const SideBar = () => {
     <div className="sidebar">
       <CDBSidebar
         className="side"
-        style={{ backgroundColor: 'ghostwhite', color: 'black' }}
+        style={{ backgroundColor: 'white', color: 'black' }}
       >
         <CDBSidebarHeader>
           <a href="/">In Site</a>

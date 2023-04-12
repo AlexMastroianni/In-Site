@@ -1,16 +1,16 @@
 import React from 'react';
-import AllSites from '../components/Sites/allSites';
+import TeamDashborder from '../components/DashBoard/TeamDashboard';
 import SideBar from '../components/SideBar';
 
-function Site({ token }) {
+function Dashboard({ token }) {
   return (
     <>
       <SideBar />
       <div className="siteContainer">
-        <AllSites token={token} />
+        <TeamDashborder token={token} />
       </div>
     </>
   );
 }
 
-export default Site;
+export default Dashboard;

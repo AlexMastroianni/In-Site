@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BarChart from '../BarChart';
-
+import SearchBar from '../SearchBar/SearchBar';
 import AddSiteModal from '../AddSiteModal/addSiteModal';
 import { supabase } from '../../helper/superBase';
 
@@ -38,11 +38,10 @@ function UserDashborder({ token }) {
   }
 
   return (
-    <div>
+    <div className="tileContainer">
+      <div className="heroBanner"></div>
       <div class="tile is-parent box searchBar">
-        <div className="tile is-child ">
-          <p>Testing</p>
-        </div>
+        <SearchBar />
       </div>
       <div class="tile is-parent box">
         <article class="tile is-child ">

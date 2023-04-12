@@ -15,6 +15,8 @@ import Signup from './pages/Signup';
 import Sites from './pages/Sites';
 import * as dotenv from 'dotenv';
 import SinlgeSite from './components/Sites/singleSite';
+import SingleSitePage from './pages/SingleSite';
+import TeamDashboard from './pages/TeamDashboard';
 
 dotenv.config();
 
@@ -60,7 +62,8 @@ const App = () => {
           {token ? <Route path={'/'} element={<Home token={token} />} /> : ''}
           <Route path="*" element={<NoMatch />} />
           <Route path="/sites" element={<Sites token={token} />} />
-          <Route path="/sites/:id" element={<SinlgeSite />} />
+          <Route path="/sites/:id" element={<SingleSitePage token={token} />} />
+          <Route path="/users" element={<TeamDashboard token={token} />} />
         </Routes>
       </Router>
     </ApolloProvider>

@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;800&display=swap');
 :root {
-  --primary: #ee8c57;
-  --secondary: #f3a847;
-  --tertiary: #b12704;
-  --light: #fcfcfc;
-  --dark: #272f32;
-  --error: rgb(228, 46, 1);
-  --spacing-one: calc(1rem * 0.5);
-  --spacing-two: calc(1rem);
   font-family: 'Poppins', sans-serif;
+}
+
+body,
+html {
+  background-color: ghostwhite !important;
+  height: 100vh;
 }
 
 a:link {
@@ -61,21 +59,45 @@ form {
 }
 
 .dashboard {
-  padding-left: 300px;
-}
-.sites {
-  padding-left: 300px;
+  z-index: 0;
+  padding-left: 18.75rem;
+  padding-right: 6.25rem;
 }
 
-@media (max-width: 900px) {
-  .card {
-    padding: 0px;
-  }
+.tileContainer {
+  padding-top: 9.375rem;
+}
+
+.siteContainer {
+  padding-left: 18.75rem;
+  padding-right: 6.25rem;
+}
+
+@media (max-width: 1200px) {
   .dashboard {
-    padding-left: 110px;
+    display: block;
+    padding-left: 18.75rem;
+    padding-right: 1.25rem;
   }
-  .sites {
-    padding-left: 0px;
+  .siteContainer {
+    padding-right: 1.25rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .dashboard {
+    padding-left: 320px;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (max-width: 715px) {
+  .dashboard {
+    padding-left: 6.875rem;
+    padding-right: 1.25rem;
+  }
+  .siteContainer {
+    padding-left: 6.875rem;
   }
 }
 
@@ -92,13 +114,16 @@ form {
 }
 
 .sidebar {
+  z-index: 2;
   border-radius: 30px;
   height: 100vmin;
   position: absolute;
   padding: 1rem;
+  background-color: ghostwhite;
 }
 .side {
   border-radius: 20px;
+  filter: drop-shadow(-5px 0px 10px rgba(0, 0, 0, 0.22));
 }
 
 .sidebar a {
@@ -107,7 +132,7 @@ form {
 
 .sidebarItems li:hover {
   background-color: #c8c7c7aa;
-  border-radius: 5px;
+  border-radius: 0.313rem;
 }
 
 .sidebarItems li {
@@ -118,10 +143,26 @@ form {
   .sidebar {
     height: 100%;
   }
-  .dashboard {
-    margin-left: 0px;
-  }
-  .sites {
-    margin-left: 0px;
-  }
+}
+
+.userCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 50px;
+}
+
+.userCard {
+  justify-content: center;
+  background-color: rgb(218, 85, 85);
+  padding: 12px;
+  border-radius: 15px;
+  margin: 10px;
+  height: 300px;
+  width: 250px;
+  color: ghostwhite;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.176);
+}
+
+.signupContainer {
+  display: block;
 }
